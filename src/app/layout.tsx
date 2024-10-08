@@ -13,7 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body style={{
+        backgroundImage: "url('https://png.pngtree.com/background/20230602/original/pngtree-poker-chips-forming-a-border-on-the-right-with-a-green-picture-image_2860845.jpg')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}>
         {children}
       </body>
     </html>

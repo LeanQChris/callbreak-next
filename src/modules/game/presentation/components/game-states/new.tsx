@@ -6,6 +6,6 @@ export default function NewGame() {
     const [name, setName] = useState<string>('')
     return <div className='flex flex-col gap-4'>
         <input onChange={(e) => setName(e.target.value)} value={name} />
-        <button onClick={() => startGame(name)} disabled={!name}>Start</button>
+        <button onClick={() => startGame(name, 1)} disabled={!name}>Start</button>
     </div>
 }

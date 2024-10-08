@@ -11,11 +11,9 @@ export default function Game() {
 
     if (gameState === GameStates.New) return <NewGame />
 
-    if (gameState === GameStates.Playing) return <InGame />
-
-    if (gameState === GameStates.Ended) return <Ended />
+    if (gameState === GameStates.GameOver) return <Ended />
 
     return (
-        <div></div>
+        <InGame />
     )
 }
