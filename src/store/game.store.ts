@@ -8,7 +8,6 @@ export enum GameStates {
     InGame = "InGame",
     CalculatingScores = "CalculatingScores",
     GameOver = "GameOver",
-
 }
 
 interface Player {
@@ -16,17 +15,17 @@ interface Player {
     dealedCards: Card[],
 }
 
-type BiddingTurn = 1 | 2 | 3 | 4
+export type BiddingTurn = 1 | 2 | 3 | 4
 export type PlayerKey = 1 | 2 | 3 | 4
 
-interface Bid {
+export interface Bid {
     1: number[],
     2: number[],
     3: number[],
     4: number[],
 }
 
-interface Scores {
+export interface Scores {
     1: number,
     2: number,
     3: number,
@@ -34,7 +33,7 @@ interface Scores {
     5: number
 }
 
-interface Players {
+export interface Players {
     1: Player,
     2: Player,
     3: Player,
@@ -50,7 +49,7 @@ type GameStore = {
     bid: Bid,
     scores: Scores | null,
     setScores: (scores: Scores) => void,
-    startGame: (name: string, player: PlayerKey) => void,
+    startGame: (payload: Partial<GameStore>) => void,
     player: PlayerKey,
     setPlayer: (player: PlayerKey) => void,
     biddingTurn: BiddingTurn | null,
@@ -87,35 +86,8 @@ export const gameStore = create<GameStore>((set) => ({
         5: 0
     },
     setScores: (scores) => set({ scores }),
-    startGame: (playerName: string, player: PlayerKey) => set((state) => {
-        const cards = createDeck()
-        const deck = shuffleDeck(cards)
-        const dealedCards = dealCards(deck)
-        return {
-            gameState: GameStates.InGame,
-            dealedCards,
-            players: {
-                1: {
-                    name: state.player === 1 ? playerName : "Player 1",
-                    dealedCards: dealedCards[0]
-                },
-                2: {
-                    name: state.player === 2 ? playerName : "Player 2",
-                    dealedCards: dealedCards[1]
-                },
-                3: {
-                    name: state.player === 3 ? playerName : "Player 3",
-                    dealedCards: dealedCards[2]
-                },
-                4: {
-                    name: state.player === 4 ? playerName : "Player 4",
-                    dealedCards: dealedCards[3]
-                }
-            },
-            player,
-            round: 1,
-            biddingTurn: 1
-        }
+    startGame: (payload: Partial<GameStore>) => set(() => {
+        return payload
     }),//
     bidInGame: (player: BiddingTurn, round: BiddingTurn, bid: number) => set((state) => {
         const updatedBid = state.bid[`${player}`];
