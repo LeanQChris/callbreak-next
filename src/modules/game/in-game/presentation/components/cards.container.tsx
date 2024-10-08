@@ -4,10 +4,11 @@ import useDropableContainer from "../hook/useDropableContainer";
 
 const DropableCardContainer: FC = () => {
     const { ref, deckCards } = useDropableContainer();
+
     return (
         <div className="h-full p-20">
             <div ref={ref} className="h-full w-full relative overflow-hidden">
-                {deckCards.map((card: any, index) => {
+                {deckCards.map((card, index) => {
                     return <div
                         key={index}
                         className="absolute"
@@ -16,7 +17,7 @@ const DropableCardContainer: FC = () => {
                             top: `${card.position.y}px`, // Use the stored position
                         }}
                     >
-                        <GameCard card={card["card"]} index={index} isVertical={false} show={true} />
+                        <GameCard card={card} index={index} isVertical={false} show={true} />
                     </div>
                 })}
             </div>

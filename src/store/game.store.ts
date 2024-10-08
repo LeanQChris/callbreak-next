@@ -1,5 +1,4 @@
 import { Card } from "@/core/game/cards";
-import { createDeck, dealCards, shuffleDeck } from "@/core/game/game";
 import { create } from "zustand";
 
 export enum GameStates {

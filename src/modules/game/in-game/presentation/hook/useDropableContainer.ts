@@ -11,7 +11,7 @@ const getRandomPosition = (containerWidth: number, containerHeight: number, card
     return { x, y };
 }
 
-interface CardWithPosition extends Card {
+export interface CardWithPosition extends Card {
     position: {
         x: number,
         y: number

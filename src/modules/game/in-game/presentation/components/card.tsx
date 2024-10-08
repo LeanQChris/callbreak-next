@@ -14,9 +14,9 @@ interface GameCardProps {
 const GameCard: React.FC<GameCardProps> = ({ card, show, isVertical, index }) => {
     const ref = useRef<HTMLDivElement>(null);
 
-    const [{ isDragging }, drag] = useDrag({
+    const [{ }, drag] = useDrag({
         type: CARDTYPE,
-        item: show ? { card } : null, // Pass the card data to the drag item only if show is true
+        item: show ? { card } : null,
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
