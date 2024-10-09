@@ -1,7 +1,8 @@
 "use client";
-import React from 'react'
-import GoogleSignInButton from './components/google-signin'
+import React from 'react';
 import { useSession } from 'next-auth/react';
+import LoginForm from './components/form';
+import { redirect } from 'next/navigation';
 
 export default function LoginPage() {
     const { data: session, status } = useSession();
@@ -10,17 +11,14 @@ export default function LoginPage() {
         return <div>Loading...</div>;
     }
 
-    if (session) {
-        return (
-            <div>
-                <h1>{session.user?.name}</h1>
-            </div>
-        )
+    if (session?.user) {
+        console.log("here")
+        redirect('/new-game')
     }
 
     return (
         <div>
-            <GoogleSignInButton />
+            <LoginForm />
         </div>
-    )
+    );
 }
